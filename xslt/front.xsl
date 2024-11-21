@@ -4,6 +4,7 @@
     <xsl:import href="./partials/html_head.xsl"/>
     <xsl:import href="./partials/html_navbar.xsl"/>
     <xsl:import href="./partials/html_footer.xsl"/>
+    <xsl:import href="partials/scroll_offset_js.xsl"/>
     <xsl:output method="html" indent="yes"/>
 
     <xsl:template match="/">
@@ -22,19 +23,19 @@
                     .sticky {
                         position: -webkit-sticky; /* Safari */
                         position: sticky;
-                        top: 20px; /* Abstand vom oberen Rand */
+                        top: 120px; /* Abstand vom oberen Rand */
                     }
                     
                     .list-unstyled.border {
-                        background-color: #f2f2f2; /* Hellgrauer Hintergrund passend zu Weiß */
-                        border: 1px solid #ddd; /* Leichter grauer Rand */
+                        background-color: #f2f2f2;
+                        border: 1px solid #ddd;
                         padding: 15px;
                         border-radius: 5px;
                     }
                     
                     .list-unstyled.border a {
                         display: block;
-                        color: #333; /* Dunklere Textfarbe für besseren Kontrast */
+                        color: #333;
                         padding: 8px 12px;
                         text-decoration: none;
                         font-weight: 500;
@@ -42,9 +43,9 @@
                     }
                     
                     .list-unstyled.border a:hover {
-                        background-color: #474747; /* Sanfte Blau-Hervorhebung */
-                        color: #EBEBEB; /* Dunklerer Blauton für Text */
-                        border-radius: 5px; /* Runde Ecken bei Hover */
+                        background-color: #474747;
+                        color: #EBEBEB;
+                        border-radius: 5px;
                     }
                     
                     .list-unstyled.border a:active {
@@ -189,6 +190,7 @@
                         </div>
                     </div>
                 </main>
+                <xsl:call-template name="scroll_offset"/>
             </body>
         </html>
     </xsl:template>

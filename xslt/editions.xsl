@@ -279,7 +279,7 @@
                                                 </xsl:if>
                                                 <xsl:if test="@type = 'siglum'">
                                                   <xsl:variable name="sSign"
-                                                  select="substring-after(@xml:id, '_')"/>
+                                                      select="substring-after(substring-after(@xml:id, '_'), '_')"/>
                                                   <xsl:variable name="sId" select="@xml:id"/>
                                                   <li id="{$sId}_app" href="#{$sId}_con">
                                                   <sup>
@@ -298,20 +298,20 @@
                             </div>
                             <div class="card-footer">
                                 <div class="row">
-                                    <div class="col-4 d-flex">
+                                    <div class="col-12 col-md-4 d-flex justify-content-start">
                                         <h4>Download</h4>
                                     </div>
-                                    <div class="col-4 d-flex justify-content-center">
+                                    <div class="col-12 col-md-4 d-flex justify-content-center">
                                         <a
                                             href="https://raw.githubusercontent.com/nuntiaturberichte/nbr-graz-data/main/editions/{concat(//tei:TEI/@xml:id, '.xml')}"
-                                            target="_blank">
+                                            target="_blank" style="color: black;">
                                             <i class="fas fa-file-code fa-2x"
                                                 title="XML herunterladen"/>&#160;<xsl:value-of
                                                 select="concat(//tei:TEI/@xml:id, '.xml')"/>
                                         </a>
                                     </div>
-                                    <div class="col-4 d-flex justify-content-center">
-                                        <a href="#" id="downloadPdf">
+                                    <div class="col-12 col-md-4 d-flex justify-content-center">
+                                        <a href="#" id="downloadPdf"  style="color: black;">
                                             <i class="fas fa-file-pdf fa-2x"
                                                 title="PDF herunterladen"/>&#160;<span
                                                 id="pdfFileName">
@@ -378,7 +378,7 @@
     </xsl:template>
 
     <xsl:template match="tei:ref">
-        <xsl:variable name="sRefSign" select="substring-after(@target, '_')"/>
+        <xsl:variable name="sRefSign" select="substring-after(substring-after(@xml:id, '_'), '_')"/>
         <xsl:variable name="refId" select="@target"/>
         <a class="siglum-ref" href="{$refId}">
             <sup>

@@ -5,14 +5,14 @@
     <xsl:include href="./params.xsl"/>
     <xsl:template match="/" name="nav_bar">
         <header>
-            <nav class="navbar navbar-expand-lg bg-light sticky-top">
+            <nav class="navbar navbar-expand-lg fixed-top"
+                style="border-bottom-left-radius: 20px; border-bottom-right-radius: 20px; background-color: #E0E0E0; border: 1px solid #666">
                 <div class="container-fluid">
                     <!-- Linksbündig -->
                     <a href="index.html" class="navbar-brand custom-logo-link" rel="home"
                         itemprop="url">
-                        <img
-                            src="./images/schriftzug-navbar.png"
-                            class="img-fluid" title="grazer-nuntiaturberichte" alt="grazer-nuntiaturberichte"
+                        <img src="./images/schriftzug-navbar.png" class="img-fluid"
+                            title="grazer-nuntiaturberichte" alt="grazer-nuntiaturberichte"
                             itemprop="logo"/>
                     </a>
 
@@ -40,7 +40,7 @@
                                     </li>
                                 </ul>
                             </li>
-                            
+
                             <li class="nav-item dropdown disabled">
                                 <a class="nav-link dropdown-toggle" href="#" role="button"
                                     data-bs-toggle="dropdown" aria-expanded="false">Technisches</a>
@@ -50,14 +50,18 @@
                                             >Kodierungsrichtlinien</a>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item" href="arbeitsablauf.html">Arbeitsablauf</a>
+                                        <a class="dropdown-item" href="arbeitsablauf.html"
+                                            >Arbeitsablauf</a>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item" href="https://github.com/nuntiaturberichte/nbr-graz-data">Quelldaten auf
-                                            GitHub</a>
+                                        <a class="dropdown-item"
+                                            href="https://github.com/nuntiaturberichte/nbr-graz-data" target="_blank"
+                                            >Quelldaten auf GitHub</a>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item" href="https://github.com/nuntiaturberichte/nbr-graz-static">App auf GitHub</a>
+                                        <a class="dropdown-item"
+                                            href="https://github.com/nuntiaturberichte/nbr-graz-static" target="_blank"
+                                            >App auf GitHub</a>
                                     </li>
                                 </ul>
                             </li>

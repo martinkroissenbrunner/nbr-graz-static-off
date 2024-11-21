@@ -1,6 +1,13 @@
 /*** global ***/
+nav .dropdown-item:active,
+nav .dropdown-item.active {
+    background-color: #474747;
+    color: #EBEBEB;
+}
+
 body {
     text-align: justify;
+    padding-top: 100px;
 }
 
 h1 {
@@ -25,7 +32,8 @@ h5 {
 /*** global end ***/
 
 /*** calendar ***/
-#years-table .btn-light:focus, #years-table .btn-light.focus {
+#years-table .btn-light:focus,
+#years-table .btn-light.focus {
     background: #363636;
     color: #f8f9fa;
 }
@@ -34,4 +42,3 @@ h5 {
     margin-bottom: 4px;
 }
 /*** calendar end ***/
-

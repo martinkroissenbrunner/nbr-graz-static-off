@@ -4,7 +4,8 @@
     exclude-result-prefixes="#all" version="2.0">
     <xsl:include href="./params.xsl"/>
     <xsl:template match="/" name="html_footer">
-        <footer class="text-center text-lg-start bg-body-tertiary text-muted mt-4">
+        <footer class="text-center text-lg-start bg-body-tertiary text-muted mt-4"
+            style="border-top-left-radius: 20px; border-top-right-radius: 20px; border: 1px solid #666;">
             <section
                 class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
                 <div class="container text-center text-md-start mt-5">
@@ -73,8 +74,8 @@
                 </div>
             </section>
             <!-- Copyright -->
-            <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);"> ©
-                Copyright: <a class="text-reset fw-bold" href="https://www.oeaw.ac.at/">OEAW</a> |
+            <div class="text-center p-4" style="border: 1px solid #666; background-color: #E0E0E0">
+                © Copyright: <a class="text-reset fw-bold" href="https://www.oeaw.ac.at/">OEAW</a> |
                     <a class="text-reset fw-bold" href="...">Impressum</a>
             </div>
             <!-- Copyright -->
