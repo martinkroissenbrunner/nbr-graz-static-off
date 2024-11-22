@@ -5,6 +5,7 @@
     <xsl:import href="./partials/html_navbar.xsl"/>
     <xsl:import href="./partials/html_footer.xsl"/>
     <xsl:import href="./partials/download_pdf_js.xsl"/>
+    <xsl:import href="./partials/scroll_offset_js.xsl"/>
     <xsl:output method="html" indent="yes"/>
 
     <xsl:template match="/">
@@ -326,8 +327,9 @@
                     </div>
                 </main>
                 <xsl:call-template name="html_footer"/>
+                <xsl:call-template name="scroll_offset"/>
+                <xsl:call-template name="download_pdf"/>
             </body>
-            <xsl:call-template name="download_pdf"/>
         </html>
     </xsl:template>
 
