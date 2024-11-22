@@ -4,7 +4,7 @@
     <xsl:import href="./partials/html_head.xsl"/>
     <xsl:import href="./partials/html_navbar.xsl"/>
     <xsl:import href="./partials/html_footer.xsl"/>
-    <xsl:import href="partials/scroll_offset_js.xsl"/>
+    <xsl:import href="./partials/scroll_offset_js.xsl"/>
     <xsl:output method="html" indent="yes"/>
 
     <xsl:template match="/">
@@ -139,7 +139,7 @@
                                                   <xsl:attribute name="href">#<xsl:value-of
                                                   select="@xml:id"/>
                                                   </xsl:attribute>
-                                                  <xsl:value-of select="string(.)"/>
+                                                  <xsl:value-of select="normalize-space(text())"/>
                                                   </a>
                                                   </xsl:when>
                                                   <xsl:when test="@n = '2'">
@@ -147,7 +147,7 @@
                                                   <xsl:attribute name="href">#<xsl:value-of
                                                   select="@xml:id"/>
                                                   </xsl:attribute>
-                                                  <xsl:value-of select="string(.)"/>
+                                                  <xsl:value-of select="normalize-space(text())"/>
                                                   </a>
                                                   </xsl:when>
                                                 </xsl:choose>
