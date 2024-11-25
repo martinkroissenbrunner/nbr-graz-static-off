@@ -5,8 +5,11 @@
     <xsl:include href="./params.xsl"/>
     <xsl:template match="/" name="nav_bar">
         <header>
-            <nav class="navbar navbar-expand-lg fixed-top"
-                style="border-bottom-left-radius: 20px; border-bottom-right-radius: 20px; background-color: #E0E0E0; border: 1px solid #666">
+            <nav class="navbar navbar-expand-lg fixed-top" style="border-bottom-left-radius: 20px;
+                border-bottom-right-radius: 20px;
+                background-color: #E0E0E0;
+                border: 1px solid #666;
+                box-shadow: 0px 5px 20px 0px rgba(0,0,0,0.35);">
                 <div class="container-fluid">
                     <!-- Linksbündig -->
                     <a href="index.html" class="navbar-brand custom-logo-link" rel="home"
@@ -55,13 +58,13 @@
                                     </li>
                                     <li>
                                         <a class="dropdown-item"
-                                            href="https://github.com/nuntiaturberichte/nbr-graz-data" target="_blank"
-                                            >Quelldaten auf GitHub</a>
+                                            href="https://github.com/nuntiaturberichte/nbr-graz-data"
+                                            target="_blank">Quelldaten auf GitHub</a>
                                     </li>
                                     <li>
                                         <a class="dropdown-item"
-                                            href="https://github.com/nuntiaturberichte/nbr-graz-static" target="_blank"
-                                            >App auf GitHub</a>
+                                            href="https://github.com/nuntiaturberichte/nbr-graz-static"
+                                            target="_blank">App auf GitHub</a>
                                     </li>
                                 </ul>
                             </li>
