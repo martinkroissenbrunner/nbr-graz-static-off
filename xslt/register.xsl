@@ -5,7 +5,6 @@
     <xsl:import href="./partials/html_navbar.xsl"/>
     <xsl:import href="./partials/html_footer.xsl"/>
     <xsl:import href="./partials/tabulator_js.xsl"/>
-    <xsl:import href="./partials/register_pop_up_js.xsl"/>
 
     <xsl:output method="html" encoding="UTF-8" indent="yes"/>
     <xsl:strip-space elements="*"/>
@@ -18,9 +17,32 @@
                 <xsl:call-template name="html_head">
                     <xsl:with-param name="html_title" select="$doc_title"/>
                 </xsl:call-template>
+                <link
+                    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css"
+                    rel="stylesheet"/>
                 <link href="https://unpkg.com/tabulator-tables@6.2.5/dist/css/tabulator.min.css"
                     rel="stylesheet"/>
                 <style>
+                    .header-container {
+                        display: flex;
+                        justify-content: center;
+                        position: relative;
+                        align-items: center;
+                    }
+                    
+                    .collapse-overlay {
+                        position: absolute;
+                        top: 175px;
+                        left: 50%;
+                        transform: translateX(-50%); /* Verschiebt das Element, sodass es mittig ist */
+                        z-index: 100;
+                        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                        border: 1px solid black;
+                        border-radius: 6px;
+                        max-width: 400px; /* Maximale Breite */
+                    }
+                    
+                    
                     /* CSS für Zellumbruch */
                     .wrap-cell {
                         white-space: normal !important;
@@ -51,39 +73,43 @@
             </head>
             <body>
                 <xsl:call-template name="nav_bar"/>
-                <div class="modal fade" id="infoModal" tabindex="-1"
-                    aria-labelledby="infoModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="infoModalLabel">Hinweis</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"/>
-                            </div>
-                            <div class="modal-body">
-                                <p>Da in den Büchern mehrere Briefe auf einer Seite vorkommen
-                                    können, war es nicht ohne weiteres möglich, die Seitenzahlen in
-                                    Briefnummern umzuwandeln. Eine solche Umwandlung hätte es
-                                    ermöglicht, im Register auf die Briefnummern statt auf die
-                                    Seitenzahlen zu verweisen, was dem digitalen Format der Edition
-                                    besser entsprochen hätte.</p>
-                                <p>Die Links im Register verweisen nun auf die gelb hinterlegten
-                                    Seitenzahlen in der Briefansicht. Diese sind genau an jenen
-                                    Stellen eingefügt, an denen die Seitenzahlen im Fließtext des
-                                    Buches erscheinen. Durch Anklicken einer Seitenzahl im Register
-                                    wird jener Brief angezeigt, der diese Seitenzahl enthält. Wenn
-                                    der gesuchte Inhalt nicht im angezeigten Brief enthalten ist,
-                                    kann dies daran liegen, dass im Buch auf dieser Seite mehrere
-                                    Briefe abgedruckt sind. In diesem Fall sollte die Suche im
-                                    nächsten Brief fortgesetzt werden. Die gesuchte Entität sollte
-                                    bis zur nächsten Seitenzahl aufgefunden werden.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 <main>
-                    <div class="my-4" style="text-align:center">
-                        <h1>Register</h1>
+                    <div class="container my-4">
+                        <div class="header-container">
+                            <h1 class="text-center mb-0">Register</h1>
+                            <button class="btn btn-collapse btn-lg" type="button"
+                                data-bs-toggle="collapse" data-bs-target="#collapseExample"
+                                aria-expanded="false" aria-controls="collapseExample">
+                                <i class="bi bi-info-square-fill"/>
+                            </button>
+
+                        </div>
+                        <div class="collapse collapse-overlay" id="collapseExample">
+                            <div class="card">
+                                <div class="card-header">Hinweise zur Verwendung des Registers</div>
+                                <div class="card-body">
+                                    <p>Da in den Büchern mehrere Briefe auf einer Seite vorkommen
+                                        können, war es nicht ohne weiteres möglich, die Seitenzahlen
+                                        in Briefnummern umzuwandeln. Eine solche Umwandlung hätte es
+                                        ermöglicht, im Register auf die Briefnummern statt auf die
+                                        Seitenzahlen zu verweisen, was dem digitalen Format der
+                                        Edition besser entsprochen hätte.</p>
+                                    <p>Die Links im Register verweisen nun auf die gelb hinterlegten
+                                        Seitenzahlen in der Briefansicht (<sub><span
+                                                class="badge bg-warning">n</span></sub>). Diese sind
+                                        genau an jenen Stellen eingefügt, an denen die Seitenzahlen
+                                        im Fließtext des Buches erscheinen. Durch Anklicken einer
+                                        Seitenzahl im Register wird jener Brief angezeigt, der diese
+                                        Seitenzahl enthält. Wenn der gesuchte Inhalt nicht im
+                                        angezeigten Brief enthalten ist, kann dies daran liegen,
+                                        dass im Buch auf dieser Seite mehrere Briefe abgedruckt
+                                        sind. In diesem Fall sollte die Suche im nächsten Brief
+                                        fortgesetzt werden. Die gesuchte Entität sollte bis zur
+                                        nächsten Seitenzahl aufgefunden werden.</p>
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
                     <div id="loader"/>
                     <div style="display: block; justify-content: center; margin: 0 2em;"
@@ -110,7 +136,6 @@
                 </main>
                 <xsl:call-template name="html_footer"/>
                 <xsl:call-template name="tabulator_js_register"/>
-                <xsl:call-template name="register_pop_up"/>
             </body>
         </html>
     </xsl:template>
@@ -191,12 +216,14 @@
         <!-- Get the part before the .xml and after .xml (if any) -->
         <xsl:choose>
             <xsl:when test="contains(@ref, '#P')">
-                <a href="{concat(substring-before(@ref, '.xml'), '.html', substring-after(@ref, '.xml'))}">
+                <a
+                    href="{concat(substring-before(@ref, '.xml'), '.html', substring-after(@ref, '.xml'))}">
                     <xsl:value-of select="."/>
                 </a>
             </xsl:when>
             <xsl:when test="contains(@ref, '#FN')">
-                <a href="{concat(substring-before(@ref, '.xml'), '.html', substring-after(@ref, '.xml'), '_app')}">
+                <a
+                    href="{concat(substring-before(@ref, '.xml'), '.html', substring-after(@ref, '.xml'), '_app')}">
                     <xsl:value-of select="."/>
                 </a>
             </xsl:when>
