@@ -4,7 +4,7 @@
     exclude-result-prefixes="#all" version="2.0">
     <xsl:include href="./params.xsl"/>
     <xsl:template match="/" name="html_footer">
-        <footer class="text-center text-lg-start bg-body-tertiary text-muted mt-4"
+        <footer class="text-center text-lg-start bg-body-tertiary text-muted mt-5"
             style="border-top-left-radius: 20px; border-top-right-radius: 20px; border: 1px solid #666; box-shadow: 0px -5px 20px 0px rgba(0,0,0,0.35);">
             <section
                 class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
