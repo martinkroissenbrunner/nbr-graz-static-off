@@ -116,9 +116,10 @@
             let match = numbersTitlesAndIds[k].id.match(/^L(\d)/);
             let bandNumber = match ? `(Bd. ${match[1]})` : ""; // Falls keine Übereinstimmung, bleibt bandNumber leer
             
-            // Füge den Bandnummer-Text zum Link hinzu
-            html += '<div class="indent"><a href="' + numbersTitlesAndIds[k].id + '">' + numbersTitlesAndIds[k].linkTitle + ' ' + bandNumber + '</a></div>';
-            }
+            // Generiere HTML: Bandnummer in einem span, außerhalb des a
+                html += '<div class="indent"><a href="' + numbersTitlesAndIds[k].id + '">' + numbersTitlesAndIds[k].linkTitle + '</a> <span>' + bandNumber + '</span></div>';
+                }
+                
             html += '</div>';
             html += '<div class="modal-footer">';
             html += '<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Schließen</button>';
