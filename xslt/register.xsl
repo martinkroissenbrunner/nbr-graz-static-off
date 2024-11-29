@@ -107,6 +107,12 @@
                                         fortgesetzt werden. Die gesuchte Entität sollte bis zur
                                         nächsten Seitenzahl aufgefunden werden.</p>
                                 </div>
+                                <div class="card-footer text-end">
+                                    <button type="button"
+                                        onclick="document.getElementById('collapseExample').classList.remove('show')"
+                                        class="btn" style="background-color: gray;color: white;"
+                                        >Schließen</button>
+                                </div>
                             </div>
 
                         </div>
