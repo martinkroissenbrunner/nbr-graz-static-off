@@ -112,7 +112,12 @@
             
             // Erstelle Links im Modal für jeden Eintrag
             for (let k = 0; k &lt; numbersTitlesAndIds.length; k++) {
-            html += '<div class="indent"><a href="' + numbersTitlesAndIds[k].id + '">' + numbersTitlesAndIds[k].linkTitle + '</a></div>';
+            // Extrahiere die Bandnummer (\d) aus der ID
+            let match = numbersTitlesAndIds[k].id.match(/^L(\d)/);
+            let bandNumber = match ? `(Bd. ${match[1]})` : ""; // Falls keine Übereinstimmung, bleibt bandNumber leer
+            
+            // Füge den Bandnummer-Text zum Link hinzu
+            html += '<div class="indent"><a href="' + numbersTitlesAndIds[k].id + '">' + numbersTitlesAndIds[k].linkTitle + ' ' + bandNumber + '</a></div>';
             }
             html += '</div>';
             html += '<div class="modal-footer">';
