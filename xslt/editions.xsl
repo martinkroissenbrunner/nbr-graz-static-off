@@ -26,7 +26,7 @@
                 <xsl:call-template name="nav_bar"/>
                 <main>
                     <div class="container-fluid">
-                        <div class="card mt-4 w-75 mx-auto">
+                        <div class="card mt-5 w-75 mx-auto">
                             <div class="card-header">
                                 <div class="row" id="title-nav" style="align-items: center;">
                                     <!-- LINKS -->
