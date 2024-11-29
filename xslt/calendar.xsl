@@ -26,9 +26,10 @@
                     <div class="container-fluid">
                         <div class="card mt-4 w-75 mx-auto">
                             <div class="card-header" style="text-align:center">
-                                <h1 style="display:inline-block;margin-bottom:0;padding-right:5px;">Kalender</h1>
+                                <h1 style="display:inline-block;margin-bottom:0;padding-right:5px;"
+                                    >Kalender</h1>
                                 <a style="padding-left:5px;" href="js-data/calendarData.js">
-                                    <i class="fas fa-download" title="Kalenderdaten herunterladen"/>
+                                    <i class="fas fa-download" title="Kalenderdaten herunterladen" style="color: black;"/>
                                 </a>
                             </div>
                             <div class="card-body">
@@ -41,20 +42,20 @@
                                                   >Jahr</p>
                                             </div>
                                             <div class="col-sm-12">
-                                                <div class="row justify-content-md-center" id="years-table"
-                                                />
+                                                <div class="row justify-content-md-center"
+                                                  id="years-table"/>
                                             </div>
                                             <div class="col-sm-12 mt-4">
                                                 <p>Datum ist</p>
                                                 <ul class="list-unstyled">
-                                                    <li>
-                                                        <span style="display:inline-block; width:20px; height:20px; background-color:#0d6efd; margin-right:10px;"></span>
-                                                        gesichert
-                                                    </li>
-                                                    <li>
-                                                        <span style="display:inline-block; width:20px; height:20px; background-color:#C74343; margin-right:10px;"></span>
-                                                        ungeklärt
-                                                    </li>
+                                                  <li>
+                                                  <span
+                                                  style="display:inline-block; width:20px; height:20px; background-color:#0d6efd; margin-right:10px;"
+                                                  /> gesichert </li>
+                                                  <li>
+                                                  <span
+                                                  style="display:inline-block; width:20px; height:20px; background-color:#C74343; margin-right:10px;"
+                                                  /> ungeklärt </li>
                                                 </ul>
                                             </div>
                                         </div>
