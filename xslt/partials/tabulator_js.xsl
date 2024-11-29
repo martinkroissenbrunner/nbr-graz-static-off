@@ -35,7 +35,7 @@
             locale: "de-de",  // Sprache auf Deutsch setzen
             layout: "fitColumns",  // Spaltenbreite automatisch anpassen
             columns: [
-            {title:"Begriff (1. Ebene)", field:"begriff_1_ebene", headerFilter:"input", headerFilterPlaceholder:"... suchen", cssClass:"wrap-cell"}, // Durchsuchbare Spalte
+            {title:"Begriff (1. Ebene)", field:"begriff_1_ebene", headerFilter:"input", headerFilterPlaceholder:"... suchen", cssClass:"wrap-cell"},
             {title:"Begriff (2. Ebene)", field:"begriff_2_ebene", cssClass:"wrap-cell"},
             {title:"Verweis", field:"verweis", cssClass:"wrap-cell"},
             {title:"Seiten (1. Band)", field:"seiten_1_band", formatter:"html", cssClass:"wrap-cell"},
@@ -71,51 +71,254 @@
             });
         </script>
     </xsl:template>
-    
+
     <xsl:template match="/" name="tabulator_js_postwege">
         <script type="text/javascript" src="https://unpkg.com/tabulator-tables@6.2.5/dist/js/tabulator.min.js"/>
         <script src="tabulator-js/config.js"/>
         <script>
             var table = new Tabulator("#tabulator-table-postwege", {
-            pagination: "local",        // Paginierung aktivieren
-            paginationSize: 25,         // 25 Reihen pro Seite anzeigen
-            paginationCounter: "rows",  // Zeilenanzahl im Footer anzeigen
-            movableColumns: true,       // Spalten verschiebbar machen
-            layout: "fitColumns",       // Layout anpassen
+            // Layout und allgemeine Einstellungen
+            layout: "fitColumns",           // Layout: Spalten passen sich an
+            responsiveLayout: true,         // Responsives Layout aktivieren
+            movableColumns: true,           // Spalten verschiebbar machen
+            locale: "de-de",                // Lokalisierung auf Deutsch
+            pagination: "local",            // Lokale Paginierung
+            paginationSize: 25,             // 25 Reihen pro Seite anzeigen
+            paginationCounter: "rows",      // Zeilenanzahl im Footer anzeigen
+            
+            // Sortierung
             initialSort: [
-            { column: "sendedatum", dir: "asc" }  // Initiale Sortierung nach Sendedatum
+            { column: "sendedatum", dir: "asc" } // Initiale Sortierung nach Sendedatum
             ],
+            
+            // Übersetzungen
             langs: {
-            "de-de": { // Deutsche Sprachdefinition
-            "pagination": {
-            "first": "Erste",
-            "first_title": "Erste Seite",
-            "last": "Letzte",
-            "last_title": "Letzte Seite",
-            "prev": "Vorige",
-            "prev_title": "Vorige Seite",
-            "next": "Nächste",
-            "next_title": "Nächste Seite",
-            "all": "Alle",
-            "counter": {
-            "showing": "Zeige",
-            "of": "von",
-            "rows": "Reihen",
-            "pages": "Seiten"
+            "de-de": {
+            pagination: {
+            first: "Erste",
+            first_title: "Erste Seite",
+            last: "Letzte",
+            last_title: "Letzte Seite",
+            prev: "Vorige",
+            prev_title: "Vorige Seite",
+            next: "Nächste",
+            next_title: "Nächste Seite",
+            all: "Alle",
+            counter: {
+            showing: "Zeige",
+            of: "von",
+            rows: "Reihen",
+            pages: "Seiten"
             }
             }
             }
             },
-            locale: "de-de", // Lokalisierung auf Deutsch
+            
+            // Spaltenkonfiguration
             columns: [
-            { title: "Bandnummer", field: "bandnummer", headerFilter: "input", formatter: "html" },
-            { title: "Briefnummer", field: "briefnummer", headerFilter: "input", formatter: "html" },
-            { title: "Sender", field: "sender", headerFilter: "input", formatter: "html" },
-            { title: "Empfänger", field: "empfänger", headerFilter: "input", formatter: "html" },
-            { title: "Titel", field: "titel", headerFilter: "input", formatter: "html" },
-            { title: "Sendedatum", field: "sendedatum", headerFilter: "input", formatter: "html" },
-            { title: "Sendeort", field: "sendeort", headerFilter: "input", formatter: "html" }
-            ]
+            // Spalte: Bandnummer
+            {
+            title: "Bandnummer",
+            field: "bandnummer",
+            formatter: "html",
+            width: "10%",
+            headerFilter: "list",
+            headerFilterPlaceholder: "... wählen",
+            
+            // Funktion, um Werte dynamisch für das Dropdown-Feld zu generieren
+            headerFilterParams: {
+            valuesLookup: function (cell) {
+            let table = cell.getTable();
+            let field = cell.getColumn().getField();
+            let data = table.getData("active");
+            
+            // Eindeutige Werte sammeln und leere Option hinzufügen
+            let uniqueValues = Array.from(new Set(data.map(row => row[field])));
+            uniqueValues = uniqueValues.filter(v => v !== "").sort(); // Sortiere Werte, außer die leeren
+            uniqueValues.unshift(""); // Leere Option an den Anfang
+            
+            // Erstelle Dropdown-Optionen mit Labels
+            return uniqueValues.map(value => ({
+            label: value === "" ? "... wählen" : value, // Label für die leere Option
+            value: value
+            }));
+            }
+            },
+            },
+            
+            // Spalte: Briefnummer
+            {
+            title: "Briefnummer",
+            field: "briefnummer",
+            headerFilter: "input",
+            headerFilterPlaceholder: "... eingeben",
+            formatter: "html",
+            width: "10%"
+            },
+            
+            // Spalte: Titel
+            {
+            title: "Titel",
+            field: "titel",
+            headerFilter: "input",
+            headerFilterPlaceholder: "... eingeben",
+            formatter: "html",
+            width: "40%"
+            },
+            
+            // Spalte: Sender
+            {
+            title: "Sender",
+            field: "sender",
+            formatter: "html",
+            width: "10%",
+            headerFilter: "list",
+            headerFilterPlaceholder: "... wählen",
+            
+            // Funktion, um Werte dynamisch für das Dropdown-Feld zu generieren
+            headerFilterParams: {
+            valuesLookup: function (cell) {
+            let table = cell.getTable();
+            let field = cell.getColumn().getField();
+            let data = table.getData("active");
+            
+            // Eindeutige Werte sammeln und leere Option hinzufügen
+            let uniqueValues = Array.from(new Set(data.map(row => row[field])));
+            uniqueValues = uniqueValues.filter(v => v !== "").sort(); // Sortiere Werte, außer die leeren
+            uniqueValues.unshift(""); // Leere Option an den Anfang
+            
+            // Erstelle Dropdown-Optionen mit Labels
+            return uniqueValues.map(value => ({
+            label: value === "" ? "... wählen" : value, // Label für die leere Option
+            value: value
+            }));
+            }
+            },
+            
+            // Funktion, um HTML-Tags aus den Werten zu entfernen
+            accessor: function (value) {
+            const div = document.createElement("div");
+            div.innerHTML = value; // HTML-Inhalte entfernen
+            return div.textContent || div.innerText || "";
+            },
+            
+            // Filterfunktion: Prüft, ob der Wert mit dem Filter übereinstimmt
+            headerFilterFunc: function (headerValue, rowValue) {
+            const div = document.createElement("div");
+            div.innerHTML = rowValue;
+            const plainTextValue = div.textContent || div.innerText || "";
+            return headerValue === "" || plainTextValue === headerValue; // Filterlogik
+            },
+            },
+            
+            // Spalte: Empfänger
+            {
+            title: "Empfänger",
+            field: "empfänger",
+            formatter: "html",
+            width: "10%",
+            headerFilter: "list",
+            headerFilterPlaceholder: "... wählen",
+            
+            // Funktion, um Werte dynamisch für das Dropdown-Feld zu generieren
+            headerFilterParams: {
+            valuesLookup: function (cell) {
+            let table = cell.getTable();
+            let field = cell.getColumn().getField();
+            let data = table.getData("active");
+            
+            // Eindeutige Werte sammeln und leere Option hinzufügen
+            let uniqueValues = Array.from(new Set(data.map(row => row[field])));
+            uniqueValues = uniqueValues.filter(v => v !== "").sort(); // Sortiere Werte, außer die leeren
+            uniqueValues.unshift(""); // Leere Option an den Anfang
+            
+            // Erstelle Dropdown-Optionen mit Labels
+            return uniqueValues.map(value => ({
+            label: value === "" ? "... wählen" : value, // Label für die leere Option
+            value: value
+            }));
+            }
+            },
+            
+            // Funktion, um HTML-Tags aus den Werten zu entfernen
+            accessor: function (value) {
+            const div = document.createElement("div");
+            div.innerHTML = value; // HTML-Inhalte entfernen
+            return div.textContent || div.innerText || "";
+            },
+            
+            // Filterfunktion: Prüft, ob der Wert mit dem Filter übereinstimmt
+            headerFilterFunc: function (headerValue, rowValue) {
+            const div = document.createElement("div");
+            div.innerHTML = rowValue;
+            const plainTextValue = div.textContent || div.innerText || "";
+            return headerValue === "" || plainTextValue === headerValue; // Filterlogik
+            },
+            },
+            
+            // Spalte: Sendedatum
+            {
+            title: "Sendedatum",
+            field: "sendedatum",
+            headerFilter: "input",
+            headerFilterPlaceholder: "... eingeben",
+            formatter: "html",
+            width: "10%"
+            },
+            
+            // Spalte: Sendeort
+            {
+            title: "Sendeort",
+            field: "sendeort",
+            formatter: "html",
+            width: "10%",
+            headerFilter: "list",
+            headerFilterPlaceholder: "... wählen",
+            
+            // Funktion, um Werte dynamisch für das Dropdown-Feld zu generieren
+            headerFilterParams: {
+            valuesLookup: function (cell) {
+            let table = cell.getTable();
+            let field = cell.getColumn().getField();
+            let data = table.getData("active");
+            
+            // Eindeutige Werte sammeln und leere Option hinzufügen
+            let uniqueValues = Array.from(new Set(data.map(row => row[field])));
+            uniqueValues = uniqueValues.filter(v => v !== "").sort(); // Sortiere Werte, außer die leeren
+            uniqueValues.unshift(""); // Leere Option an den Anfang
+            
+            // Erstelle Dropdown-Optionen mit Labels
+            return uniqueValues.map(value => ({
+            label: value === "" ? "... wählen" : value, // Label für die leere Option
+            value: value
+            }));
+            }
+            },
+            
+            // Funktion, um HTML-Tags aus den Werten zu entfernen
+            accessor: function (value) {
+            const div = document.createElement("div");
+            div.innerHTML = value; // HTML-Inhalte entfernen
+            return div.textContent || div.innerText || "";
+            },
+            
+            // Filterfunktion: Prüft, ob der Wert mit dem Filter übereinstimmt
+            headerFilterFunc: function (headerValue, rowValue) {
+            const div = document.createElement("div");
+            div.innerHTML = rowValue;
+            const plainTextValue = div.textContent || div.innerText || "";
+            return headerValue === "" || plainTextValue === headerValue; // Filterlogik
+            },
+            }
+            ],
+            // Sicherstellen, dass Filter aktualisiert werden
+            dataFiltered: function(filters, rows) {
+            this.redraw(); // Tabelle neu zeichnen, damit sich Filteroptionen aktualisieren
+            }
+            
+            });
+            document.getElementById("reset-filters").addEventListener("click", function () {
+            table.clearHeaderFilter(); // Alle Filter löschen
             });
         </script>
     </xsl:template>
@@ -160,5 +363,5 @@
             });
         </script>
     </xsl:template>
-    
+
 </xsl:stylesheet>
