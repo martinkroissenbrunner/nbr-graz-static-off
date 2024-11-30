@@ -5,6 +5,7 @@
     <xsl:import href="./partials/html_navbar.xsl"/>
     <xsl:import href="./partials/html_footer.xsl"/>
     <xsl:import href="./partials/scroll_offset_js.xsl"/>
+    <xsl:import href="./partials/div_observer_js.xsl"/>
     <xsl:output method="html" indent="yes"/>
 
     <xsl:template match="/">
@@ -54,6 +55,12 @@
                     }
                     .list-unstyled.border .indent-2 {
                         font-size: 0.9em;
+                    }
+                    
+                    .active-link {
+                        border-left: 4px solid #474747;
+                        border-bottom-left-radius: 5px;
+                        border-top-left-radius: 5px;
                     }
                     /* Inhaltsverzeichnis-Ende */
                     
@@ -166,13 +173,14 @@
                                         <xsl:apply-templates select="//tei:body"/>
                                     </div>
                                     <div class="col-md-12">
-                                        <h2 id="fnApp">Fußnotenapparat</h2>
-                                        <ul class="list-unstyled">
-                                            <xsl:for-each select="//tei:note">
-                                                <xsl:variable name="fnSign"
+                                        <div class="con-text border">
+                                            <h2 id="fnApp">Fußnotenapparat</h2>
+                                            <ul class="list-unstyled">
+                                                <xsl:for-each select="//tei:note">
+                                                  <xsl:variable name="fnSign"
                                                   select="number(substring-after(@xml:id, '_'))"/>
-                                                <xsl:variable name="fnId" select="@xml:id"/>
-                                                <li id="{$fnId}_app">
+                                                  <xsl:variable name="fnId" select="@xml:id"/>
+                                                  <li id="{$fnId}_app">
                                                   <sup>
                                                   <span class="badge bg-primary">
                                                   <xsl:value-of select="number($fnSign)"/>
@@ -181,9 +189,10 @@
                                                   select="normalize-space(.)"/><a
                                                   href="#{$fnId}_con">&#160;<i
                                                   class="bi bi-arrow-up"/></a>
-                                                </li>
-                                            </xsl:for-each>
-                                        </ul>
+                                                  </li>
+                                                </xsl:for-each>
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -191,6 +200,7 @@
                     </div>
                 </main>
                 <xsl:call-template name="scroll_offset"/>
+                <xsl:call-template name="div_observer"/>
             </body>
         </html>
     </xsl:template>
