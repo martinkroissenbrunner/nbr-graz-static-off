@@ -256,9 +256,9 @@
                                             </div>
                                         </xsl:for-each>
                                     </div>
-                                    <hr/>
                                 </xsl:if>
                                 <xsl:if test="//tei:note">
+                                    <hr/>
                                     <div id="footnotes-apparatus" class="card-body">
                                         <h3>Fußnoten</h3>
                                         <ul class="list-unstyled">
