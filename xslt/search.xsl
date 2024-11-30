@@ -10,7 +10,7 @@
     <xsl:import href="./partials/html_head.xsl"/>
     <xsl:import href="./partials/html_footer.xsl"/>
     <xsl:template match="/">
-        <xsl:variable name="doc_title" select="'Search'"/>
+        <xsl:variable name="doc_title" select="'Suche'"/>
         <html class="h-100">
             <head>
                 <xsl:call-template name="html_head">
@@ -21,10 +21,10 @@
             <body class="d-flex flex-column h-100">
                 <xsl:call-template name="nav_bar"/>
                 <main class="flex-shrink-0 flex-grow-1">
-                    <div class="container pt-3">
+                    <div class="container">
 
-                        <div class="text-center p-3">
-                            <h1 class="text-center display-2 pt-3">
+                        <div class="text-center">
+                            <h1 class="text-center my-4">
                                 <xsl:value-of select="$doc_title"/>
                             </h1>
                             <div id="searchbox"/>
@@ -34,14 +34,17 @@
                         </div>
                         
                         <div class="row">
+                            <div id="pagination" class="p-3"/>
+                        </div>
+                        
+                        <div class="row">
                             <div class="col-md-3">
-                                <h2>Facets</h2>
+                                <h2>Facetten</h2>
                                 <div id="refinement-list-sender" class="pb-3"></div>
                                 <div id="refinement-list-receiver" class="pb-3"></div>
                                 <div id="refinement-list-volume" class="pb-3"></div>
                             </div>
                             <div class="col-md-9">
-                                <div id="pagination" class="p-3"/>
                                 <div id="hits"/>
                             </div>
                         </div>
