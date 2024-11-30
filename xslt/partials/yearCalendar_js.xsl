@@ -117,7 +117,7 @@
             let bandNumber = match ? `(Bd. ${match[1]})` : ""; // Falls keine Übereinstimmung, bleibt bandNumber leer
             
             // Generiere HTML: Bandnummer in einem span, außerhalb des a
-                html += '<div class="indent"><a href="' + numbersTitlesAndIds[k].id + '">' + numbersTitlesAndIds[k].linkTitle + '</a> <span>' + bandNumber + '</span></div>';
+            html += '<div class="indent"><a href="' + numbersTitlesAndIds[k].id + '">' + numbersTitlesAndIds[k].linkTitle + '</a>&#160;<span>' + bandNumber + '</span></div>';
                 }
                 
             html += '</div>';
