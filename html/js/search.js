@@ -43,7 +43,7 @@ search.addWidgets([
     instantsearch.widgets.searchBox({
         container: "#searchbox",
         autofocus: true,
-        placeholder: 'Search',
+        placeholder: 'suche ...',
         cssClasses: {
             form: "form-inline",
             input: "form-control col-md-11",
@@ -58,7 +58,7 @@ search.addWidgets([
             item: "w-100"
         },
         templates: {
-            empty: "No results for <q>{{ query }}</q>",
+            empty: "Keine Resultate für <q>{{ query }}</q>",
             item(hit, { html, components }) {
                 return html` 
             <h3><a href="${hit.rec_id}.html">${hit.title}</a></h3>
