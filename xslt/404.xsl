@@ -15,7 +15,7 @@
     <xsl:template match="/">
         <xsl:variable name="doc_title" select="'404 - Seite nicht gefunden'"/>
         <xsl:text disable-output-escaping="yes">&lt;!DOCTYPE html&gt;</xsl:text>
-        <html class="h-100">
+        <html class="h-100" lang="de">
             <head>
                 <xsl:call-template name="html_head">
                     <xsl:with-param name="html_title" select="$doc_title"></xsl:with-param>
