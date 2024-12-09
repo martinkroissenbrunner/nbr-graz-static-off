@@ -11,9 +11,13 @@
     <xsl:template match="/">
         <xsl:variable name="doc_title" select="'Kalendar'"/>
         <xsl:text disable-output-escaping="yes">&lt;!DOCTYPE html&gt;</xsl:text>
-        <html>
+        <html lang="de">
             <head>
-                <xsl:call-template name="html_head"/>
+                <xsl:call-template name="html_head">
+                    <xsl:with-param name="html_title" select="$doc_title"/>
+                </xsl:call-template>
+                <meta name="description"
+                    content="Nutzen Sie die Kalenderansicht der Grazer Nuntiaturberichte, um historische Korrespondenzen und wichtige Ereignisse der Gegenreformation nach Datum zu erkunden."/>
                 <link rel="stylesheet" type="text/css"
                     href="https://unpkg.com/js-year-calendar@latest/dist/js-year-calendar.min.css"/>
                 <link rel="stylesheet"
@@ -22,14 +26,15 @@
             </head>
             <body>
                 <xsl:call-template name="nav_bar"/>
-                <main>
-                    <div class="container-fluid">
-                        <div class="card mt-4 w-75 mx-auto">
+                <main class="flex-shrink-0">
+                    <div class="container">
+                        <div class="card mt-4">
                             <div class="card-header" style="text-align:center">
                                 <h1 style="display:inline-block;margin-bottom:0;padding-right:5px;"
                                     >Kalender</h1>
                                 <a style="padding-left:5px;" href="js-data/calendarData.js">
-                                    <i class="fas fa-download" title="Kalenderdaten herunterladen" style="color: black;"/>
+                                    <i class="fas fa-download" title="Kalenderdaten herunterladen"
+                                        style="color: black;"/>
                                 </a>
                             </div>
                             <div class="card-body">
