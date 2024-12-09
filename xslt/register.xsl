@@ -5,6 +5,7 @@
     <xsl:import href="./partials/html_navbar.xsl"/>
     <xsl:import href="./partials/html_footer.xsl"/>
     <xsl:import href="./partials/tabulator_js.xsl"/>
+    <xsl:import href="./partials/tooltip_js.xsl"/>
 
     <xsl:output method="html" encoding="UTF-8" indent="yes"/>
     <xsl:strip-space elements="*"/>
@@ -12,11 +13,13 @@
     <xsl:template match="/">
         <xsl:variable name="doc_title" select="'Register'"/>
         <xsl:text disable-output-escaping="yes">&lt;!DOCTYPE html&gt;</xsl:text>
-        <html>
+        <html lang="de">
             <head>
                 <xsl:call-template name="html_head">
                     <xsl:with-param name="html_title" select="$doc_title"/>
                 </xsl:call-template>
+                <meta name="description"
+                    content="Stöbern Sie im Register der Grazer Nuntiaturberichte und finden Sie die wichtigsten Entitäten, die die Korrespondenz des päpstlichen Gesandten in Innerösterreich prägten."/>
                 <link
                     href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css"
                     rel="stylesheet"/>
@@ -77,16 +80,18 @@
                     <div class="container my-4">
                         <div class="header-container">
                             <h1 class="text-center mb-0">Register</h1>
-                            <button class="btn btn-collapse btn-lg" type="button"
-                                data-bs-toggle="collapse" data-bs-target="#collapseExample"
-                                aria-expanded="false" aria-controls="collapseExample">
-                                <i class="bi bi-info-square-fill"/>
-                            </button>
+                            <span id="tooltip" title="Hinweis">
+                                <button class="btn btn-collapse btn-lg" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#collapseExample"
+                                    aria-expanded="false" aria-controls="collapseExample">
+                                    <i class="bi bi-info-square-fill"/>
+                                </button>
+                            </span>
 
                         </div>
                         <div class="collapse collapse-overlay" id="collapseExample">
                             <div class="card">
-                                <div class="card-header">Hinweise zur Verwendung des Registers</div>
+                                <div class="card-header">Hinweis zur Verwendung des Registers</div>
                                 <div class="card-body">
                                     <p>Da in den Büchern mehrere Briefe auf einer Seite vorkommen
                                         können, war es nicht ohne weiteres möglich, die Seitenzahlen
@@ -142,6 +147,7 @@
                 </main>
                 <xsl:call-template name="html_footer"/>
                 <xsl:call-template name="tabulator_js_register"/>
+                <xsl:call-template name="tooltip"/>
             </body>
         </html>
     </xsl:template>
