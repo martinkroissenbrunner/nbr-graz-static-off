@@ -21,12 +21,18 @@
                 </xsl:call-template>
                 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css"
                     rel="stylesheet"/>
+                <style>
+                    #heading .badge {
+                    font-size: 0.75rem;
+                    padding: 0.3em 0.5em;
+                    }
+                </style>
             </head>
             <body>
                 <xsl:call-template name="nav_bar"/>
-                <main>
-                    <div class="container-fluid">
-                        <div class="card mt-5 w-75 mx-auto">
+                <main class="flex-shrink-0">
+                    <div class="container">
+                        <div class="card mt-5">
                             <div class="card-header">
                                 <div class="row" id="title-nav" style="align-items: center;">
                                     <!-- LINKS -->
@@ -102,40 +108,55 @@
                                     </div>
 
                                     <!-- MITTE -->
-                                    <div class="col-12 col-lg-4 text-center">
+                                    <div class="col-12 col-lg-4 text-center" id="heading">
                                         <h1>
                                             <xsl:apply-templates
                                                 select="//tei:text/tei:body/tei:head"/>
                                         </h1>
+                                        <xsl:if
+                                            test="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:titleStmt/tei:title[@level = 'a' and @type = 'appendix']">
+                                            <span>
+                                                <em>
+                                                    <xsl:value-of select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:titleStmt/tei:title[@level = 'a' and @type = 'appendix']"/>
+                                                </em>
+                                            </span>
+                                        </xsl:if>
                                     </div>
                                     <!-- MITTE-RECHTS -->
-                                    <div class="col-12 col-sm-6 col-lg-2 d-flex justify-content-center">
+                                    <div
+                                        class="col-12 col-sm-6 col-lg-2 d-flex justify-content-center">
                                         <span style="display: flex; align-items: center;">
                                             <span>
                                                 <xsl:text>Band&#160;</xsl:text>
                                             </span>
                                             <span class="badge">
                                                 <xsl:attribute name="style">
-                                                    <xsl:text>margin-right: 10px; color: black; background-color:</xsl:text>
-                                                    <xsl:choose>
-                                                        <xsl:when test="//tei:biblScope[@unit = 'volume']/@n = '1'">
-                                                            <xsl:text>#FBBE9D</xsl:text>
-                                                        </xsl:when>
-                                                        <xsl:when test="//tei:biblScope[@unit = 'volume']/@n = '2'">
-                                                            <xsl:text>#C3E4B4</xsl:text>
-                                                        </xsl:when>
-                                                        <xsl:when test="//tei:biblScope[@unit = 'volume']/@n = '3'">
-                                                            <xsl:text>#DFB5E3</xsl:text>
-                                                        </xsl:when>
-                                                        <xsl:when test="//tei:biblScope[@unit = 'volume']/@n = '4'">
-                                                            <xsl:text>#DCD5D0</xsl:text>
-                                                        </xsl:when>
-                                                        <xsl:when test="//tei:biblScope[@unit = 'volume']/@n = '5'">
-                                                            <xsl:text>#C7EAF9</xsl:text>
-                                                        </xsl:when>
-                                                    </xsl:choose>
+                                                  <xsl:text>margin-right: 10px; color: black; background-color:</xsl:text>
+                                                  <xsl:choose>
+                                                  <xsl:when
+                                                  test="//tei:biblScope[@unit = 'volume']/@n = '1'">
+                                                  <xsl:text>#FBBE9D</xsl:text>
+                                                  </xsl:when>
+                                                  <xsl:when
+                                                  test="//tei:biblScope[@unit = 'volume']/@n = '2'">
+                                                  <xsl:text>#C3E4B4</xsl:text>
+                                                  </xsl:when>
+                                                  <xsl:when
+                                                  test="//tei:biblScope[@unit = 'volume']/@n = '3'">
+                                                  <xsl:text>#DFB5E3</xsl:text>
+                                                  </xsl:when>
+                                                  <xsl:when
+                                                  test="//tei:biblScope[@unit = 'volume']/@n = '4'">
+                                                  <xsl:text>#DCD5D0</xsl:text>
+                                                  </xsl:when>
+                                                  <xsl:when
+                                                  test="//tei:biblScope[@unit = 'volume']/@n = '5'">
+                                                  <xsl:text>#C7EAF9</xsl:text>
+                                                  </xsl:when>
+                                                  </xsl:choose>
                                                 </xsl:attribute>
-                                                <xsl:value-of select="//tei:biblScope[@unit = 'volume']/@n" />
+                                                <xsl:value-of
+                                                  select="//tei:biblScope[@unit = 'volume']/@n"/>
                                             </span>
                                         </span>
                                     </div>
@@ -280,7 +301,7 @@
                                                 </xsl:if>
                                                 <xsl:if test="@type = 'siglum'">
                                                   <xsl:variable name="sSign"
-                                                      select="substring-after(substring-after(@xml:id, '_'), '_')"/>
+                                                  select="substring-after(substring-after(@xml:id, '_'), '_')"/>
                                                   <xsl:variable name="sId" select="@xml:id"/>
                                                   <li id="{$sId}_app" href="#{$sId}_con">
                                                   <sup>
@@ -312,7 +333,7 @@
                                         </a>
                                     </div>
                                     <div class="col-12 col-md-4 d-flex justify-content-center">
-                                        <a href="#" id="downloadPdf"  style="color: black;">
+                                        <a href="#" id="downloadPdf" style="color: black;">
                                             <i class="fas fa-file-pdf fa-2x"
                                                 title="PDF herunterladen"/>&#160;<span
                                                 id="pdfFileName">
