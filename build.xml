@@ -17,7 +17,7 @@
         <factory name="net.sf.saxon.TransformerFactoryImpl"/>
         <classpath location="${basedir}/saxon/saxon9he.jar"/>
     </xslt>
-    <xslt in="./xslt/postwege.xsl" out="${target}/postwege.html"
+    <xslt in="./xslt/postwege.xsl" out="${target}/toc.html"
         style="./xslt/postwege.xsl">
         <factory name="net.sf.saxon.TransformerFactoryImpl"/>
         <classpath location="${basedir}/saxon/saxon9he.jar"/>
@@ -32,7 +32,7 @@
         <classpath location="${basedir}/saxon/saxon9he.jar"/>
     </xslt>
     <xslt in="../GN/nbr-graz-data/meta/kodierungsrichtlinien.xml"
-        out="${target}/kodierungsrichtlinien.html" style="./xslt/kodierungsrichtlinien.xsl">
+        out="${target}/elements.html" style="./xslt/kodierungsrichtlinien.xsl">
         <factory name="net.sf.saxon.TransformerFactoryImpl"/>
         <classpath location="${basedir}/saxon/saxon9he.jar"/>
     </xslt>
@@ -46,7 +46,7 @@
         <factory name="net.sf.saxon.TransformerFactoryImpl"/>
         <classpath location="${basedir}/saxon/saxon9he.jar"/>
     </xslt>
-    <xslt in="../GN/nbr-graz-data/meta/arbeitsablauf.xml" out="${target}/arbeitsablauf.html" style="./xslt/arbeitsablauf.xsl">
+    <xslt in="../GN/nbr-graz-data/meta/arbeitsablauf.xml" out="${target}/workflow.html" style="./xslt/arbeitsablauf.xsl">
         <factory name="net.sf.saxon.TransformerFactoryImpl"/>
         <classpath location="${basedir}/saxon/saxon9he.jar"/>
     </xslt>
