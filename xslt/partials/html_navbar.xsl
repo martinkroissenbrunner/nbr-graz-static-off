@@ -49,11 +49,11 @@
                                     data-bs-toggle="dropdown" aria-expanded="false">Technisches</a>
                                 <ul class="dropdown-menu">
                                     <li>
-                                        <a class="dropdown-item" href="kodierungsrichtlinien.html"
+                                        <a class="dropdown-item" href="elements.html"
                                             >Kodierungsrichtlinien</a>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item" href="arbeitsablauf.html"
+                                        <a class="dropdown-item" href="workflow.html"
                                             >Arbeitsablauf</a>
                                     </li>
                                     <li>
@@ -93,7 +93,7 @@
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="postwege.html">Briefe</a>
+                                <a class="nav-link" href="toc.html">Briefe</a>
                             </li>
 
                             <li class="nav-item">
