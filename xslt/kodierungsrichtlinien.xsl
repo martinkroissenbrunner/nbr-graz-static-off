@@ -14,15 +14,15 @@
     <xsl:template match="/">
         <xsl:variable name="doc_title" select="'Kodierungsrichtlinien'"/>
         <xsl:text disable-output-escaping="yes">&lt;!DOCTYPE html&gt;</xsl:text>
-        <html class="h-100">
+        <html class="h-100" lang="de">
             <head>
                 <xsl:call-template name="html_head">
                     <xsl:with-param name="html_title" select="$doc_title"/>
                 </xsl:call-template>
                 <style>
                     .level-2 {
-                        margin-left: 1em;
-                        margin-right: 1em;
+                        margin-left: 1vw;
+                        margin-right: 1vw;
                         background-color: #f9f9f9;
                         margin-bottom: 20px;
                         padding: 10px;
@@ -30,8 +30,8 @@
                         border-radius: 5px;
                     }
                     .level-3 {
-                        margin-left: 2em;
-                        margin-right: 2em;
+                        margin-left: 1vw;
+                        margin-right: 1vw;
                         background-color: #f1f1f1;
                         margin-bottom: 20px;
                         padding: 10px;
@@ -39,8 +39,8 @@
                         border-radius: 5px;
                     }
                     .level-4 {
-                        margin-left: 3em;
-                        margin-right: 3em;
+                        margin-left: 1vw;
+                        margin-right: 1vw;
                         background-color: #e9e9e9;
                         margin-bottom: 20px;
                         padding: 10px;
@@ -110,9 +110,15 @@
     </xsl:template>
 
     <xsl:template match="tei:figure[@xml:id = 'kodierung-bsp.png']">
-        <img class="img-fluid" id="kodierung-bsp" alt="Kodierung Beispiel">
+        <img class="img-fluid">
+            <xsl:attribute name="id">
+                <xsl:text>kodierung-bsp</xsl:text>
+            </xsl:attribute>
             <xsl:attribute name="src">
                 <xsl:value-of select="@source"/>
+            </xsl:attribute>
+            <xsl:attribute name="alt">
+                <xsl:value-of select="tei:desc"/>
             </xsl:attribute>
         </img>
     </xsl:template>
