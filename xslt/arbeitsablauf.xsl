@@ -17,15 +17,15 @@
                 select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:titleStmt/tei:title[@level = 's']"/>
         </xsl:variable>
         <xsl:text disable-output-escaping="yes">&lt;!DOCTYPE html&gt;</xsl:text>
-        <html class="h-100">
+        <html class="h-100" lang="de">
             <head>
                 <xsl:call-template name="html_head">
                     <xsl:with-param name="html_title" select="$doc_title"/>
                 </xsl:call-template>
                 <style>
                     .level-2 {
-                        margin-left: 1em;
-                        margin-right: 1em;
+                        margin-left: 1vw;
+                        margin-right: 1vw;
                         background-color: #f9f9f9;
                         margin-bottom: 20px;
                         padding: 10px;
@@ -33,8 +33,8 @@
                         border-radius: 5px;
                     }
                     .level-3 {
-                        margin-left: 2em;
-                        margin-right: 2em;
+                        margin-left: 1vw;
+                        margin-right: 1vw;
                         background-color: #f1f1f1;
                         margin-bottom: 20px;
                         padding: 10px;
@@ -42,8 +42,8 @@
                         border-radius: 5px;
                     }
                     .level-4 {
-                        margin-left: 3em;
-                        margin-right: 3em;
+                        margin-left: 1vw;
+                        margin-right: 1vw;
                         background-color: #e9e9e9;
                         margin-bottom: 20px;
                         padding: 10px;
@@ -68,7 +68,7 @@
                     }
                     
                     table tr:nth-child(even) {
-                    background-color: #F5F5F5;
+                        background-color: #F5F5F5;
                     }
                     
                     table a {
@@ -140,38 +140,40 @@
     </xsl:template>
 
     <xsl:template match="tei:table">
-        <table>
-            <xsl:for-each select="tei:row">
-                <tr>
-                    <xsl:choose>
-                        <xsl:when test="position() = 1">
-                            <xsl:for-each select="tei:cell">
-                                <th style="text-align:center; background-color: #99C3FF;">
-                                    <xsl:value-of select="."/>
-                                </th>
-                            </xsl:for-each>
-                        </xsl:when>
-                        <xsl:otherwise>
-                            <xsl:for-each select="tei:cell">
-                                <xsl:choose>
-                                    <xsl:when test="@cols">
-                                        <td colspan="{@cols}"
-                                            style="text-align:center; font-style: italic; background-color: #D6E7FF;">
-                                            <xsl:value-of select="."/>
-                                        </td>
-                                    </xsl:when>
-                                    <xsl:otherwise>
-                                        <td>
-                                            <xsl:value-of select="."/>
-                                        </td>
-                                    </xsl:otherwise>
-                                </xsl:choose>
-                            </xsl:for-each>
-                        </xsl:otherwise>
-                    </xsl:choose>
-                </tr>
-            </xsl:for-each>
-        </table>
+        <div class="table-responsive">
+            <table>
+                <xsl:for-each select="tei:row">
+                    <tr>
+                        <xsl:choose>
+                            <xsl:when test="position() = 1">
+                                <xsl:for-each select="tei:cell">
+                                    <th style="text-align:center; background-color: #99C3FF;">
+                                        <xsl:value-of select="."/>
+                                    </th>
+                                </xsl:for-each>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:for-each select="tei:cell">
+                                    <xsl:choose>
+                                        <xsl:when test="@cols">
+                                            <td colspan="{@cols}"
+                                                style="text-align:center; font-style: italic; background-color: #D6E7FF;">
+                                                <xsl:value-of select="."/>
+                                            </td>
+                                        </xsl:when>
+                                        <xsl:otherwise>
+                                            <td>
+                                                <xsl:value-of select="."/>
+                                            </td>
+                                        </xsl:otherwise>
+                                    </xsl:choose>
+                                </xsl:for-each>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </tr>
+                </xsl:for-each>
+            </table>
+        </div>
     </xsl:template>
 
     <xsl:template match="tei:code">
