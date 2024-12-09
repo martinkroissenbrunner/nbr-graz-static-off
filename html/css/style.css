@@ -8,7 +8,15 @@ nav .dropdown-item.active {
 body {
     text-align: justify;
     padding-top: 100px;
+    hyphens: auto;
 }
+
+@media (max-width: 441px) {
+    body {
+        padding-top: 130px;
+    }
+}
+
 /*** global end ***/
 
 /*** calendar ***/
