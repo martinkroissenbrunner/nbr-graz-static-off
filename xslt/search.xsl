@@ -11,11 +11,13 @@
     <xsl:import href="./partials/html_footer.xsl"/>
     <xsl:template match="/">
         <xsl:variable name="doc_title" select="'Suche'"/>
-        <html class="h-100">
+        <html class="h-100" lang="de">
             <head>
                 <xsl:call-template name="html_head">
                     <xsl:with-param name="html_title" select="$doc_title"/>
                 </xsl:call-template>
+                <meta name="description"
+                    content="Durchsuchen Sie die digitale Sammlung der Grazer Nuntiaturberichte mit einer facettierten Volltextsuche, die es Ihnen ermöglicht, die Suchergebnisse nach verschiedenen Kategorien zu filtern."/>
             </head>
 
             <body class="d-flex flex-column h-100">
