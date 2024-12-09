@@ -14,15 +14,15 @@
     <xsl:template match="/">
         <xsl:variable name="doc_title" select="'Impressum'"/>
         <xsl:text disable-output-escaping="yes">&lt;!DOCTYPE html&gt;</xsl:text>
-        <html class="h-100">
+        <html class="h-100" lang="de">
             <head>
                 <xsl:call-template name="html_head">
                     <xsl:with-param name="html_title" select="$doc_title"/>
                 </xsl:call-template>
                 <style>
                     .level-2 {
-                        margin-left: 1em;
-                        margin-right: 1em;
+                        margin-left: 1vw;
+                        margin-right: 1vw;
                         background-color: #f9f9f9;
                         margin-bottom: 20px;
                         padding: 10px;
@@ -30,8 +30,8 @@
                         border-radius: 5px;
                     }
                     .level-3 {
-                        margin-left: 2em;
-                        margin-right: 2em;
+                        margin-left: 1vw;
+                        margin-right: 1vw;
                         background-color: #f1f1f1;
                         margin-bottom: 20px;
                         padding: 10px;
