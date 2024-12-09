@@ -14,7 +14,7 @@
                 select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:titleStmt/tei:title[@level = 'a']"/>
         </xsl:variable>
         <xsl:text disable-output-escaping="yes">&lt;!DOCTYPE html&gt;</xsl:text>
-        <html>
+        <html lang="de">
             <head>
                 <xsl:call-template name="html_head">
                     <xsl:with-param name="html_title" select="$doc_title"/>
@@ -297,49 +297,53 @@
     </xsl:template>
 
     <xsl:template match="tei:table[@type = 'with-head']">
-        <table>
-            <xsl:for-each select="tei:row">
-                <tr>
-                    <xsl:if test="@n = '0'">
-                        <xsl:for-each select="tei:cell">
-                            <th>
-                                <xsl:apply-templates/>
-                            </th>
-                        </xsl:for-each>
-                    </xsl:if>
-                    <xsl:if test="@n != '0'">
-                        <xsl:for-each select="tei:cell">
-                            <td>
-                                <xsl:apply-templates/>
-                            </td>
-                        </xsl:for-each>
-                    </xsl:if>
-                </tr>
-            </xsl:for-each>
-        </table>
+        <div class="table-responsive">
+            <table>
+                <xsl:for-each select="tei:row">
+                    <tr>
+                        <xsl:if test="@n = '0'">
+                            <xsl:for-each select="tei:cell">
+                                <th>
+                                    <xsl:apply-templates/>
+                                </th>
+                            </xsl:for-each>
+                        </xsl:if>
+                        <xsl:if test="@n != '0'">
+                            <xsl:for-each select="tei:cell">
+                                <td>
+                                    <xsl:apply-templates/>
+                                </td>
+                            </xsl:for-each>
+                        </xsl:if>
+                    </tr>
+                </xsl:for-each>
+            </table>
+        </div>
     </xsl:template>
 
     <xsl:template match="tei:table[@type = 'without-head']">
-        <table>
-            <xsl:for-each select="tei:row">
-                <tr>
-                    <xsl:for-each select="tei:cell">
-                        <xsl:choose>
-                            <xsl:when test="@cols">
-                                <td colspan="{@cols}">
-                                    <xsl:value-of select="."/>
-                                </td>
-                            </xsl:when>
-                            <xsl:otherwise>
-                                <td>
-                                    <xsl:value-of select="."/>
-                                </td>
-                            </xsl:otherwise>
-                        </xsl:choose>
-                    </xsl:for-each>
-                </tr>
-            </xsl:for-each>
-        </table>
+        <div class="table-responsive">
+            <table>
+                <xsl:for-each select="tei:row">
+                    <tr>
+                        <xsl:for-each select="tei:cell">
+                            <xsl:choose>
+                                <xsl:when test="@cols">
+                                    <td colspan="{@cols}">
+                                        <xsl:value-of select="."/>
+                                    </td>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <td>
+                                        <xsl:value-of select="."/>
+                                    </td>
+                                </xsl:otherwise>
+                            </xsl:choose>
+                        </xsl:for-each>
+                    </tr>
+                </xsl:for-each>
+            </table>
+        </div>
     </xsl:template>
 
 
