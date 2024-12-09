@@ -5,7 +5,7 @@
     <xsl:import href="./partials/html_navbar.xsl"/>
     <xsl:import href="./partials/html_footer.xsl"/>
     <xsl:import href="./partials/tabulator_js.xsl"/>
-    <xsl:import href="./partials/tooltipp_js.xsl"/>
+    <xsl:import href="./partials/tooltip_js.xsl"/>
 
     <xsl:output method="html" encoding="UTF-8" indent="yes"/>
     <xsl:strip-space elements="*"/>
@@ -13,7 +13,7 @@
     <xsl:template match="/">
         <xsl:variable name="doc_title" select="'Alle Briefe'"/>
         <xsl:text disable-output-escaping="yes">&lt;!DOCTYPE html&gt;</xsl:text>
-        <html xmlns="http://www.w3.org/1999/xhtml">
+        <html xmlns="http://www.w3.org/1999/xhtml" lang="de">
             <head>
                 <xsl:call-template name="html_head">
                     <xsl:with-param name="html_title" select="$doc_title"/>
@@ -37,11 +37,12 @@
                     <div class="container my-4">
                         <div class="header-container">
                             <h1 class="text-center mb-0">Alle Briefe</h1>
-                            <button id="reset-filters" class="btn btn-lg" type="button"
-                                data-bs-toggle="tooltip" data-bs-placement="top"
-                                title="Filter zurücksetzen">
-                                <i class="bi bi-x-square-fill"/>
-                            </button>
+                            <span id="tooltip" title="Alle Filter zurücksetzen"
+                                data-bs-placement="top">
+                                <button id="reset-filters" class="btn btn-lg" type="button">
+                                    <i class="bi bi-x-square-fill"/>
+                                </button>
+                            </span>
                         </div>
                     </div>
                     <div style="display: block; justify-content: center; margin: 0 2em;"
@@ -136,7 +137,7 @@
                 <xsl:call-template name="html_footer"/>
                 <xsl:call-template name="tabulator_js_postwege"/>
                 <xsl:call-template name="html_tabulator_dl_buttons_js"/>
-                <xsl:call-template name="tooltipp_js_postwege"/>
+                <xsl:call-template name="tooltip"/>
             </body>
         </html>
     </xsl:template>
