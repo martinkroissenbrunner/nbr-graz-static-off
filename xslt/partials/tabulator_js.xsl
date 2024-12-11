@@ -182,9 +182,22 @@
             let field = cell.getColumn().getField();
             let data = table.getData("active");
             
-            // Eindeutige Werte sammeln und leere Option hinzufügen
-            let uniqueValues = Array.from(new Set(data.map(row => row[field])));
-            uniqueValues = uniqueValues.filter(v => v !== "").sort(); // Sortiere Werte, außer die leeren
+            // Funktion zum Bereinigen der Werte (z. B. Entfernen von Zeilenumbrüchen und überflüssigen Leerzeichen)
+            const cleanValue = (value) => {
+            const div = document.createElement("div");
+            div.innerHTML = value; // Entferne HTML-Tags
+            return (div.textContent || div.innerText || "").trim().replace(/\s+/g, " "); // Entferne überflüssige Leerzeichen
+            };
+            
+            // Eindeutige und bereinigte Werte sammeln
+            let uniqueValues = Array.from(
+            new Set(
+            data
+            .map(row => cleanValue(row[field])) // Bereinige die Werte
+            .filter(v => v !== "") // Leere Werte entfernen
+            )
+            ).sort(); // Sortiere Werte alphabetisch
+            
             uniqueValues.unshift(""); // Leere Option an den Anfang
             
             // Erstelle Dropdown-Optionen mit Labels
@@ -194,6 +207,8 @@
             }));
             }
             },
+            
+            
             
             // Funktion, um HTML-Tags aus den Werten zu entfernen
             accessor: function (value) {
@@ -227,9 +242,22 @@
             let field = cell.getColumn().getField();
             let data = table.getData("active");
             
-            // Eindeutige Werte sammeln und leere Option hinzufügen
-            let uniqueValues = Array.from(new Set(data.map(row => row[field])));
-            uniqueValues = uniqueValues.filter(v => v !== "").sort(); // Sortiere Werte, außer die leeren
+            // Funktion zum Bereinigen der Werte (z. B. Entfernen von Zeilenumbrüchen und überflüssigen Leerzeichen)
+            const cleanValue = (value) => {
+            const div = document.createElement("div");
+            div.innerHTML = value; // Entferne HTML-Tags
+            return (div.textContent || div.innerText || "").trim().replace(/\s+/g, " "); // Entferne überflüssige Leerzeichen
+            };
+            
+            // Eindeutige und bereinigte Werte sammeln
+            let uniqueValues = Array.from(
+            new Set(
+            data
+            .map(row => cleanValue(row[field])) // Bereinige die Werte
+            .filter(v => v !== "") // Leere Werte entfernen
+            )
+            ).sort(); // Sortiere Werte alphabetisch
+            
             uniqueValues.unshift(""); // Leere Option an den Anfang
             
             // Erstelle Dropdown-Optionen mit Labels
