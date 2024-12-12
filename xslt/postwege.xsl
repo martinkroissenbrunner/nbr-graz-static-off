@@ -112,7 +112,7 @@
                                             <a target="_blank">
                                                 <xsl:attribute name="href">
                                                   <xsl:value-of
-                                                  select="substring-after(descendant::tei:correspDesc/tei:correspAction[@type = 'sent']/tei:persName[1]/@ref, '#')"
+                                                      select="descendant::tei:correspDesc/tei:correspAction[@type = 'sent']/tei:persName[1]/@ref"
                                                   />
                                                 </xsl:attribute>
                                                 <xsl:value-of
@@ -124,7 +124,7 @@
                                             <a target="_blank">
                                                 <xsl:attribute name="href">
                                                   <xsl:value-of
-                                                  select="substring-after(descendant::tei:correspDesc/tei:correspAction[@type = 'received']/tei:persName[1]/@ref, '#')"
+                                                      select="descendant::tei:correspDesc/tei:correspAction[@type = 'received']/tei:persName[1]/@ref"
                                                   />
                                                 </xsl:attribute>
                                                 <xsl:value-of
@@ -141,7 +141,7 @@
                                             <a target="_blank">
                                                 <xsl:attribute name="href">
                                                   <xsl:value-of
-                                                  select="substring-after(descendant::tei:correspAction[@type = 'sent']/tei:placeName/@ref, '#')"
+                                                      select="descendant::tei:correspAction[@type = 'sent']/tei:placeName/@ref"
                                                   />
                                                 </xsl:attribute>
                                                 <xsl:value-of
