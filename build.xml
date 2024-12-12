@@ -27,7 +27,11 @@
         <factory name="net.sf.saxon.TransformerFactoryImpl"/>
         <classpath location="${basedir}/saxon/saxon9he.jar"/>
     </xslt>
-    <xslt in="../GN/nbr-graz-data/meta/about.xml" out="${target}/index.html" style="./xslt/index.xsl">
+    <xslt in="../GN/nbr-graz-data/meta/index.xml" out="${target}/index.html" style="./xslt/index.xsl">
+        <factory name="net.sf.saxon.TransformerFactoryImpl"/>
+        <classpath location="${basedir}/saxon/saxon9he.jar"/>
+    </xslt>
+    <xslt in="../GN/nbr-graz-data/meta/about.xml" out="${target}/about.html" style="./xslt/about.xsl">
         <factory name="net.sf.saxon.TransformerFactoryImpl"/>
         <classpath location="${basedir}/saxon/saxon9he.jar"/>
     </xslt>
