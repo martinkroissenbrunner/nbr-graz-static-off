@@ -29,6 +29,28 @@
                         justify-content: center;
                         position: relative;
                         align-items: center;
+                    }
+                    #loader {
+                        position: fixed;
+                        left: 50%;
+                        top: 50%;
+                        width: 50px;
+                        height: 50px;
+                        margin-left: -25px;
+                        margin-top: -25px;
+                        border: 4px solid rgba(0, 0, 0, .1);
+                        border-radius: 50%;
+                        border-top-color: #3498db;
+                        animation: spin 1s infinite linear;
+                        z-index: 1000;
+                    }
+                    @keyframes spin {
+                    to { transform: rotate(360deg); }
+                    }
+                    
+                    /* Tabelle */
+                    .tabulator-tableholder {
+                        overflow-x: hidden !important;
                     }</style>
             </head>
             <body>
@@ -45,6 +67,7 @@
                             </span>
                         </div>
                     </div>
+                    <div id="loader"/>
                     <div style="display: block; justify-content: center; margin: 0 2em;"
                         id="tabulator-table-wrapper">
                         <table class="table table-sm display" id="tabulator-table-postwege">
