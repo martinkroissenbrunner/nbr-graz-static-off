@@ -23,10 +23,9 @@
                     rel="stylesheet"/>
                 <style>
                     #heading .badge {
-                    font-size: 0.75rem;
-                    padding: 0.3em 0.5em;
-                    }
-                </style>
+                        font-size: 0.75rem;
+                        padding: 0.3em 0.5em;
+                    }</style>
             </head>
             <body>
                 <xsl:call-template name="nav_bar"/>
@@ -117,7 +116,9 @@
                                             test="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:titleStmt/tei:title[@level = 'a' and @type = 'appendix']">
                                             <span>
                                                 <em>
-                                                    <xsl:value-of select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:titleStmt/tei:title[@level = 'a' and @type = 'appendix']"/>
+                                                  <xsl:value-of
+                                                  select="/tei:TEI/tei:teiHeader/tei:fileDesc/tei:titleStmt/tei:title[@level = 'a' and @type = 'appendix']"
+                                                  />
                                                 </em>
                                             </span>
                                         </xsl:if>
@@ -325,7 +326,7 @@
                                     </div>
                                     <div class="col-12 col-md-4 d-flex justify-content-center">
                                         <a
-                                            href="https://raw.githubusercontent.com/nuntiaturberichte/nbr-graz-data/main/editions/{concat(//tei:TEI/@xml:id, '.xml')}"
+                                            href="https://nuntiaturberichte.github.io/nbr-graz-static/{concat(//tei:TEI/@xml:id, '.xml')}"
                                             target="_blank" style="color: black;">
                                             <i class="fas fa-file-code fa-2x"
                                                 title="XML herunterladen"/>&#160;<xsl:value-of
