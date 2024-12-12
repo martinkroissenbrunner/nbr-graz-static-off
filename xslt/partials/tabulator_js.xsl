@@ -224,10 +224,13 @@
             
             // Filterfunktion: Prüft, ob der Wert mit dem Filter übereinstimmt
             headerFilterFunc: function (headerValue, rowValue) {
+            const cleanValue = (value) => {
             const div = document.createElement("div");
-            div.innerHTML = rowValue;
-            const plainTextValue = div.textContent || div.innerText || "";
-            return headerValue === "" || plainTextValue === headerValue; // Filterlogik
+            div.innerHTML = value;
+            return (div.textContent || div.innerText || "").trim().replace(/\s+/g, " ");
+            };
+            const cleanedRowValue = cleanValue(rowValue); // Bereinige den Tabellenwert zur Laufzeit
+            return headerValue === "" || cleanedRowValue === headerValue;
             },
             },
             
@@ -256,9 +259,7 @@
             
             // Eindeutige und bereinigte Werte sammeln
             let uniqueValues = Array.from(
-            new Set(
-            data
-            .map(row => cleanValue(row[field])) // Bereinige die Werte
+            new Set(data.map(row => cleanValue(row[field])) // Bereinige die Werte
             .filter(v => v !== "") // Leere Werte entfernen
             )
             ).sort(); // Sortiere Werte alphabetisch
@@ -282,10 +283,13 @@
             
             // Filterfunktion: Prüft, ob der Wert mit dem Filter übereinstimmt
             headerFilterFunc: function (headerValue, rowValue) {
+            const cleanValue = (value) => {
             const div = document.createElement("div");
-            div.innerHTML = rowValue;
-            const plainTextValue = div.textContent || div.innerText || "";
-            return headerValue === "" || plainTextValue === headerValue; // Filterlogik
+            div.innerHTML = value;
+            return (div.textContent || div.innerText || "").trim().replace(/\s+/g, " ");
+            };
+            const cleanedRowValue = cleanValue(rowValue); // Bereinige den Tabellenwert zur Laufzeit
+            return headerValue === "" || cleanedRowValue === headerValue;
             },
             },
             
@@ -358,6 +362,7 @@
             document.getElementById('loader').style.display = 'none';
             document.getElementById('tabulator-table-wrapper').style.display = 'block';
             });
+            window.myTable = table;
             });
         </script>
     </xsl:template>
