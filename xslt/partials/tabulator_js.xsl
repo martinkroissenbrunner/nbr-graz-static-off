@@ -9,8 +9,11 @@
             document.addEventListener("DOMContentLoaded", function() {
             var table = new Tabulator("#tabulator-table-register", {
             pagination: "local",  // Paginierung aktivieren
-            paginationSize: 25,   // 25 Zeilen pro Seite anzeigen
+            paginationSize: 50,   // 50 Zeilen pro Seite anzeigen
             paginationCounter: "rows",  // Anzeige der Seitenanzahl im Footer
+            responsiveLayout: true,
+            height: "630px",
+            virtualDom: true,
             langs: {
             "de-de": { // Deutsche Sprachdefinition
             "pagination": {
@@ -67,7 +70,7 @@
             setTimeout(function(){
             document.getElementById('loader').style.display = 'none';
             document.getElementById('tabulator-table-wrapper').style.display = 'block';
-            }); // 2 Sekunden Timeout
+            });
             });
         </script>
     </xsl:template>
@@ -76,15 +79,17 @@
         <script type="text/javascript" src="https://unpkg.com/tabulator-tables@6.2.5/dist/js/tabulator.min.js"/>
         <script src="tabulator-js/config.js"/>
         <script>
+            document.addEventListener("DOMContentLoaded", function() {
             var table = new Tabulator("#tabulator-table-postwege", {
             // Layout und allgemeine Einstellungen
-            layout: "fitColumns",           // Layout: Spalten passen sich an
             responsiveLayout: true,         // Responsives Layout aktivieren
             movableColumns: true,           // Spalten verschiebbar machen
             locale: "de-de",                // Lokalisierung auf Deutsch
             pagination: "local",            // Lokale Paginierung
             paginationSize: 25,             // 25 Reihen pro Seite anzeigen
             paginationCounter: "rows",      // Zeilenanzahl im Footer anzeigen
+            height: "630px",
+            virtualDom: true,
             
             // Sortierung
             initialSort: [
@@ -347,6 +352,12 @@
             });
             document.getElementById("reset-filters").addEventListener("click", function () {
             table.clearHeaderFilter(); // Alle Filter löschen
+            });
+            // Verstecke den Loader nach einer Verzögerung
+            setTimeout(function(){
+            document.getElementById('loader').style.display = 'none';
+            document.getElementById('tabulator-table-wrapper').style.display = 'block';
+            });
             });
         </script>
     </xsl:template>
