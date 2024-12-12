@@ -52,6 +52,13 @@
                         word-wrap: break-word;
                     }
                     
+                    /* Tabelle */
+                    .tabulator-tableholder {
+                        overflow-x: hidden !important;
+                    }
+                    
+                    
+                    
                     /* CSS für den Ladebildschirm */
                     #loader {
                         position: fixed;
